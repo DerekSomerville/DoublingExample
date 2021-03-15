@@ -1,0 +1,8 @@
+Fake\LoadDelimitedFileTest.class
+Stub\LoadDelimitedFileTest.class
+Stub\LoadFileTest.class
+Fake\LoadFileTest.class
+Foundation\LoadDelimitedFileTest.class
+Mock\LoadDelimitedFileTest.class
+Mock\LoadFileTest.class
+Foundation\LoadFileTest.class
