@@ -1,5 +1,7 @@
 package Mock;
 
+import Stub.DataConstants;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,37 +11,20 @@ import java.util.Scanner;
 public class LoadFile implements Load {
 
     private String filePathPrefix = DataConstants.RESOURCE;
-    private Scanner propertyReader = null;
-
-    public void setPropertyReader(Scanner propertyReader) {
-        this.propertyReader = propertyReader;
-    }
-
-    private void createPropertyReader(String fileName ){
-        Scanner propertyReader = null;
-        if (propertyReader == null) {
-            try {
-                File propertyFile = new File(filePathPrefix + fileName);
-                propertyReader = new Scanner(propertyFile);
-            } catch (IOException e) {
-                System.out.println("An error occurred in " + "getPropertyReader");
-                e.printStackTrace();
-            }
-        }
-    }
 
     public List<String> getFileData( String fileName){
         List<String> fileData = new ArrayList<String>();
-        createPropertyReader(fileName);
         try {
+            File propertyFile = new File(filePathPrefix + fileName);
+            Scanner propertyReader = new Scanner(propertyFile);
             while (propertyReader.hasNextLine()) {
                 String fileRow = propertyReader.nextLine();
                 fileData.add(fileRow);
             }
             propertyReader.close();
-        } catch (Exception exp) {
-            System.out.println("An error occurred in " + "getFileData");
-            exp.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
         }
         return fileData;
     }

@@ -36,17 +36,6 @@ class LoadFileTest {
         assertEquals(result, loadFile.getLastLines("Games.csv",1));
     }
 
-    @Test
-    void getFileDataFirstRowMock() {
-        Scanner mockScanner = spy(Scanner.class);
-        when(mockScanner.hasNextLine()).thenReturn(true);
-        when(mockScanner.hasNextLine()).thenReturn(false);
-        when(mockScanner.nextLine()).thenReturn("MockScanner,Scanner");
-        loadFile.setPropertyReader(mockScanner);
-        assertEquals("MockScanner,Scanner",loadFile.getFileData("Games.csv").get(0));
-
-    }
-
 
 
 }

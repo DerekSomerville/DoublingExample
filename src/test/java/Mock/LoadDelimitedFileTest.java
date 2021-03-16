@@ -2,6 +2,10 @@ package Mock;
 
 import Mock.LoadStub;
 import org.junit.jupiter.api.Test;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.when;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -42,6 +46,18 @@ class LoadDelimitedFileTest {
         loadDelimitedFile.setLoadFile(new Mock.LoadStub());
         loadDelimitedFile.setFileDelimitor("k");
         assertEquals("Dere",loadDelimitedFile.getFileData("Games.csv").get(0)[0]);
+    }
+
+    @Test
+    void setFileDelimitorMock() {
+        List<String> mockData = new ArrayList<String>();
+        mockData.add("SaraSomervillexFrank,Somerville");
+        mockData.add("Matt,Barr");
+        LoadFile mockLoadFile = spy(LoadFile.class);
+        when(mockLoadFile.getFileData("Games.csv")).thenReturn(mockData);
+        loadDelimitedFile.setLoadFile(mockLoadFile);
+        loadDelimitedFile.setFileDelimitor("x");
+        assertEquals("SaraSomerville",loadDelimitedFile.getFileData("Games.csv").get(0)[0]);
     }
 
 }
